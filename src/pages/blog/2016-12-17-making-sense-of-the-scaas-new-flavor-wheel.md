@@ -1,10 +1,13 @@
 ---
 templateKey: blog-post
-title: Making sense of the SCAA’s new Flavor Wheel
-date: 2016-12-17T15:04:10.000Z
+title: Ubuntu 20.04 Node.js Nasıl Yüklenir
+date: 2021-05-28T01:09:19.540Z
+description: Node.js, sunucu tarafı programlama için bir JavaScript tabanlı bir
+  geliştirme araçıdır. Geliştiricilerin, tarayıcı tabanlı web geliştirmeden
+  zaten aşina olduğumuz bir dil olan JavaScript kullanarak ölçeklenebilir
+  back-end işlevselliği oluşturmalarına olanak tanır.
 featuredpost: false
-featuredimage: /img/flavor_wheel.jpg
-description: The Coffee Taster’s Flavor Wheel, the official resource used by coffee tasters, has been revised for the first time this year.
+featuredimage: https://cdn.webrazzi.com/uploads/2014/02/nodejs-logo_hd.png
 tags:
   - flavor
   - tasting
