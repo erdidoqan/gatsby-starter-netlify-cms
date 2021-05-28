@@ -5,32 +5,92 @@ date: 2021-05-28T01:13:05.954Z
 description: Node.js, sunucu tarafı programlama için bir JavaScript tabanlı bir
   geliştirme araçıdır. Geliştiricilerin, tarayıcı tabanlı web geliştirmeden
   zaten aşina olduğumuz bir dil olan JavaScript kullanarak ölçeklenebilir
-  back-end işlevselliği oluşturmalarına olanak tanır.
+  back-end işlevselliği oluşturmalarına olanak tanır. Node.js ve npm ubuntu
+  20.04 kurulum
 featuredpost: true
 featuredimage: /img/nodejs-logo_hd.png
 tags:
-  - flavor
-  - tasting
+  - npm
+  - node
+  - nodejs
+  - ubuntu
 ---
-![flavor wheel](/img/nodejs-logo_hd.png)
+![Node.js ve npm ubuntu 20.04 kurulum](/img/nodejs-logo_hd.png)
 
-The SCAA updated the wheel to reflect the finer nuances needed to describe flavors more precisely. The new descriptions are more detailed and hence allow cuppers to distinguish between more flavors.
 
-While this is going to be a big change for professional coffee tasters, it means a lot to you as a consumer as well. We’ll explain how the wheel came to be, how pros use it and what the flavors actually mean.
 
-## What the updates mean to you
+Node.js ve npm ubuntu 20.04 kurulum en hızlı nasıl yapabilirsiniz. Sunucu tarafında en kolay ve hızlı kurulum yollarını aşağıda en detaylı halini sizlere paylaşacağım.
 
-The Specialty Coffee Association of America (SCAA), founded in 1982, is a non-profit trade organization for the specialty coffee industry. With members located in more than 40 countries, SCAA represents every segment of the specialty coffee industry, including:
+Bu kılavuzda, bir Ubuntu 20.04 sunucusuna Node.js'yi kurmanın üç farklı yolunu göstereceğiz:
 
-* producers
-* roasters
-* importers/exporters
-* retailers
-* manufacturers
-* baristas
+* Node.js paketini Ubuntu’nun varsayılan yazılım deposundan yüklemek için `apt` kullanmak
+* node.js paketinin belirli sürümlerini yüklemek için alternatif bir PPA yazılım deposuyla `apt` kullanma
+* Node Version Manager olan `nvm`'yi kurmak ve onu Node.js'nin birden çok sürümünü kurmak ve yönetmek için kullanmak
 
-For over 30 years, SCAA has been dedicated to creating a vibrant specialty coffee community by recognizing, developing and promoting specialty coffee. SCAA sets and maintains quality standards for the industry, conducts market research, and provides education, training, resources, and business services for its members.
+## 1. Seçenek - Varsayılan Depolardan Apt ile Node.js'yi Yükleme
 
-Coffee cupping, or coffee tasting, is the practice of observing the tastes and aromas of brewed coffee. It is a professional practice but can be done informally by anyone or by professionals known as "Q Graders". A standard coffee cupping procedure involves deeply sniffing the coffee, then loudly slurping the coffee so it spreads to the back of the tongue.
+Ubuntu 20.04, varsayılan depolarında birden çok sistemde tutarlı bir deneyim sağlamak için kullanılabilen bir Node.js sürümü içerir. Depolardaki sürüm 10.19'dur. Bu en son sürüm olmayacak, ancak dil ile hızlı denemeler için kararlı ve yeterli olmalıdır.
 
-The coffee taster attempts to measure aspects of the coffee's taste, specifically the body (the texture or mouthfeel, such as oiliness), sweetness, acidity (a sharp and tangy feeling, like when biting into an orange), flavour (the characters in the cup), and aftertaste. Since coffee beans embody telltale flavours from the region where they were grown, cuppers may attempt to identify the coffee's origin.
+Bu sürümü almak için apt paket yöneticisini kullanabilirsiniz. Önce şunu yazarak yerel paket dizininizi yenileyin:
+
+```asp
+sudo apt update
+```
+
+Ardından Node.js'yi yükleyin:
+
+```
+sudo apt install nodejs
+```
+
+Node sürümünü sorgulayarak yüklemenin başarılı olup olmadığını kontrol edin:
+
+```
+nodejs -v
+```
+
+Paketler ihtiyaçlarınızı karşılıyorsa, Node.js ile kurulum yapmak için yapmanız gereken tek şey budur. Çoğu durumda, Node.js paket yöneticisi olan npm'yi de kurmak isteyeceksiniz. Bunu, apt ile npm paketini yükleyerek yapabilirsiniz:
+
+```
+sudo apt install npm
+```
+
+Bu, Node.js ile kullanılacak modülleri ve paketleri kurmanıza olanak tanır.
+
+Bu noktada, `apt` ve varsayılan Ubuntu yazılım havuzlarını kullanarak Node.js ve `npm`'yi başarıyla yüklediniz. Sonraki bölüm, Node.js'nin farklı sürümlerini yüklemek için alternatif bir havuzun nasıl kullanılacağını gösterecektir.
+
+## 2. Seçenek - Bir NodeSource PPA Kullanarak Node.js'yi Apt ile Yükleme
+
+Node.js'nin farklı bir sürümünü yüklemek için NodeSource tarafından sağlanan bir PPA'yı (kişisel paket arşivi) kullanabilirsiniz. Bu PPA'lar, resmi Ubuntu depolarından daha fazla Node.js sürümüne sahiptir. Node.js v10, v12, v13 ve v14, yazıldığı tarihte mevcuttur.
+
+İlk olarak, paketlerine erişmek için PPA'yı kuracağız. 14.x'i tercih ettiğiniz sürüm dizesiyle (farklıysa) değiştirdiğinizden emin olarak, tercih ettiğiniz sürüm için yükleme komut dosyasını almak için ana dizininizden curl'ü kullanın.
+
+```
+cd ~
+curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
+
+```
+
+Mevcut sürümler hakkında daha fazla bilgi için [NodeSource](https://github.com/nodesource/distributions/blob/master/README.md) belgelerine bakın.
+
+İndirilen komut dosyasının içeriğini `nano` (veya tercih ettiğiniz metin düzenleyiciyle) ile inceleyin:
+
+```
+nano nodesource_setup.sh
+```
+
+Komut dosyasının güvenli olduğundan emin olduğunuzda, düzenleyicinizden çıkın ve komut dosyasını `sudo` ile çalıştırın:
+
+```
+sudo bash nodesource_setup.sh
+```
+
+Paketi `-v` sürüm işaretiyle çalıştırarak yeni sürümü yüklediğinizi doğrulayın:
+
+```
+node -v
+```
+
+NodeSource nodejs paketi hem düğüm ikilisini hem de npm'yi içerir, bu nedenle npm'yi ayrı olarak kurmanıza gerek yoktur.
+
+Bu noktada apt ve **NodeSource PPA** kullanarak Node.js ve npm'yi başarıyla yüklediniz. Sonraki bölümde, Node.js'nin birden çok sürümünü yüklemek ve yönetmek için Düğüm Sürümü Yöneticisinin nasıl kullanılacağı gösterilecektir.
